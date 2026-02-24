@@ -1,0 +1,23 @@
+<div class="product-list-container">
+  <div class="list-header">
+    <h2>{{ categoryName }}</h2>
+    <span class="product-count">{{ products.length }} products</span>
+  </div>
+
+  <div *ngIf="products.length > 0; else noProducts" class="product-grid">
+    <app-product-item
+      *ngFor="let product of products"
+      [product]="product"
+      (like)="onLike($event)"
+      (delete)="onDelete($event)"
+    ></app-product-item>
+  </div>
+
+  <ng-template #noProducts>
+    <div class="no-products">
+      <i class="fas fa-box-open"></i>
+      <h3>No products found</h3>
+      <p>Try changing your search or filter criteria</p>
+    </div>
+  </ng-template>
+</div>
